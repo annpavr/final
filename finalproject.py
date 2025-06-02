@@ -1,12 +1,16 @@
-import googletrans as gt
+from googletrans import Translator
+import asyncio
 
-translator = gt.Translator()
+async def main():
+    translator = Translator()
 
-print("Англійська - en, Українська - uk, Французька - fr, Німецька - de, Польська - pl, Іспанька - es")
+    print("Англійська - en, Українська - uk, Французька - fr, Німецька - de, Польська - pl, Іспанська - es")
 
-language1 = input("Мова з якої перекладати(введіть скорочений код): ").lower()
-language2 = input("На яку мову перекладати(введіть скорочений код): ").lower()
-text = input("Введіть текст: ")
-translated = translator.translate(text, src=language1, dest=language2)
+    language1 = input("Мова з якої перекладати (введіть скорочений код): ").lower()
+    language2 = input("На яку мову перекладати (введіть скорочений код): ").lower()
+    text = input("Введіть текст: ")
 
-print("Переклад :", translated.text)
+    translated = await translator.translate(text, src=language1, dest=language2)
+    print("Переклад:", translated.text)
+
+asyncio.run(main())
